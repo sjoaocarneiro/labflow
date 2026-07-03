@@ -2,6 +2,6 @@ document
     .getElementById("btnAssinar")
     .addEventListener("click", function () {
 
-        alert("Botão funcionando!");
+        window.location.href = "signature.html";
 
     });
