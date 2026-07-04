@@ -1,3 +1,5 @@
+const t = window.TrelloPowerUp.iframe();
+
 const canvas = document.getElementById("signature-pad");
 
 canvas.width = canvas.offsetWidth;
