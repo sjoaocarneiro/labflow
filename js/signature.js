@@ -20,7 +20,17 @@ document.getElementById("salvar").onclick = async () => {
 
         alert("1");
 
-const cardId = await getCardId();
+let cardId;
+
+try {
+    cardId = await getCardId();
+    alert("2");
+    alert(cardId);
+} catch (e) {
+    console.error(e);
+    alert(e.message);
+    return;
+}
 
 alert("2");
 
