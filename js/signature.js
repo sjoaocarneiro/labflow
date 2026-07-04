@@ -18,15 +18,19 @@ document.getElementById("salvar").onclick = async () => {
 
     try {
 
-        const cardId = await getCardId();
+        alert("1");
 
-        const assinatura = signaturePad.toDataURL("image/png");
+const cardId = await getCardId();
 
-        const resultado = await uploadSignature(cardId, assinatura);
+alert("2");
 
-        console.log(resultado);
+const assinatura = signaturePad.toDataURL("image/png");
 
-        alert("Assinatura enviada para o Trello!");
+alert("3");
+
+const resultado = await uploadSignature(cardId, assinatura);
+
+alert("4");
 
     } catch (erro) {
 
