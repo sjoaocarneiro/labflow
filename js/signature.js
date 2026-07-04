@@ -1,106 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+const canvas = document.getElementById("signature-pad");
 
-<head>
-    <meta charset="UTF-8">
-    <title>Assinatura</title>
+canvas.width = canvas.offsetWidth;
+canvas.height = 300;
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+const signaturePad = new SignaturePad(canvas);
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            padding: 15px;
-        }
+document.getElementById("limpar").addEventListener("click", () => {
+    signaturePad.clear();
+});
 
-        h2 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
+document.getElementById("salvar").addEventListener("click", async () => {
 
-        #signature-pad {
-            width: 100%;
-            height: 300px;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            background: white;
-            display: block;
-        }
+    if (signaturePad.isEmpty()) {
+        alert("Faça uma assinatura primeiro.");
+        return;
+    }
 
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
+    const cardId = await getCardId();
 
-        button {
-            flex: 1;
-            padding: 15px;
-            font-size: 18px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            color: white;
-        }
+    const assinatura = signaturePad.toDataURL("image/png");
 
-        #limpar {
-            background: #d32f2f;
-        }
+    try {
 
-        #salvar {
-            background: #1976d2;
-        }
-    </style>
-</head>
+        await uploadSignature(cardId, assinatura);
 
-<body>
+        alert("Assinatura anexada ao cartão!");
 
-    <h2>Assine Abaixo =)</h2>
+    } catch (e) {
 
-    <canvas id="signature-pad"></canvas>
+        console.error(e);
+        alert(e.message);
 
-    <div class="buttons">
-        <button id="limpar">Limpar</button>
-        <button id="salvar">Salvar</button>
-    </div>
+    }
 
-    <!-- Bibliotecas -->
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
-    <script src="https://p.trellocdn.com/power-up.min.js"></script>
-
-    <!-- Arquivos do projeto -->
-    <script src="../js/config.js"></script>
-    <script src="../js/trello.js"></script>
-    <script src="../js/api.js"></script>
-
-    <script>
-
-        const cardId = await getCardId();
-
-const assinatura = signaturePad.toDataURL("image/png");
-
-try {
-
-    await uploadSignature(cardId, assinatura);
-
-    alert("Assinatura anexada ao cartão!");
-
-} catch (e) {
-
-    console.error(e);
-    alert(e.message);
-
-}
-
-        });
-
-    </script>
-
-</body>
-
-</html>
+});
