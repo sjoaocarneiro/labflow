@@ -12,7 +12,7 @@ document.getElementById("limpar").onclick = () => {
 document.getElementById("salvar").onclick = async () => {
 
     if (signaturePad.isEmpty()) {
-        alert("Faça uma assinatura primeiro.");
+        alert("Faça uma assinatura primeiro para continuar.");
         return;
     }
 
