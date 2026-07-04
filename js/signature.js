@@ -60,44 +60,57 @@
 
 <body>
 
-<h2>Assine abaixo</h2>
+    <h2>Assine abaixo</h2>
 
-<canvas id="signature-pad"></canvas>
+    <canvas id="signature-pad"></canvas>
 
-<div class="buttons">
-    <button id="limpar">Limpar</button>
-    <button id="salvar">Salvar</button>
-</div>
+    <div class="buttons">
+        <button id="limpar">Limpar</button>
+        <button id="salvar">Salvar</button>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
-<script src="../js/config.js"></script>
+    <!-- Bibliotecas -->
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
 
-<script>
+    <!-- Arquivos do projeto -->
+    <script src="../js/config.js"></script>
+    <script src="../js/trello.js"></script>
+    <script src="../js/api.js"></script>
 
-const canvas = document.getElementById("signature-pad");
+    <script>
 
-canvas.width = canvas.offsetWidth;
-canvas.height = 300;
+        const canvas = document.getElementById("signature-pad");
 
-const signaturePad = new SignaturePad(canvas);
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 300;
 
-document.getElementById("limpar").addEventListener("click", () => {
-    signaturePad.clear();
-});
+        const signaturePad = new SignaturePad(canvas);
 
-document.getElementById("salvar").addEventListener("click", () => {
+        document.getElementById("limpar").addEventListener("click", () => {
+            signaturePad.clear();
+        });
 
-    if (signaturePad.isEmpty()) {
-        alert("Faça uma assinatura primeiro.");
-        return;
-    }
+        document.getElementById("salvar").addEventListener("click", async () => {
 
-    // Aqui vamos anexar a assinatura ao Trello
-    console.log(signaturePad.toDataURL("image/png"));
+            if (signaturePad.isEmpty()) {
+                alert("Faça uma assinatura primeiro.");
+                return;
+            }
 
-});
+            const cardId = await getCardId();
 
-</script>
+            const assinatura = signaturePad.toDataURL("image/png");
+
+            console.log("Card:", cardId);
+            console.log("Assinatura:", assinatura);
+
+            // No próximo passo chamaremos:
+            // await uploadSignature(cardId, assinatura);
+
+        });
+
+    </script>
 
 </body>
 
