@@ -1,7 +1,7 @@
 const canvas = document.getElementById("signature-pad");
 
 canvas.width = canvas.offsetWidth;
-canvas.height = 300;
+canvas.height = 301;
 
 const signaturePad = new SignaturePad(canvas);
 
