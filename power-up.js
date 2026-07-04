@@ -1,13 +1,13 @@
 window.TrelloPowerUp.initialize({
-  "card-buttons": function (t, options) {
+  "card-buttons": function (t) {
     return [
       {
         text: "LabFlow",
         callback: function (t) {
-          return t.popup({
+          return t.modal({
             title: "LabFlow",
             url: "pages/home.html",
-            height: 600
+            fullscreen: true
           });
         }
       }
