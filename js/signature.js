@@ -5,32 +5,35 @@ canvas.height = 300;
 
 const signaturePad = new SignaturePad(canvas);
 
-document.getElementById("limpar").addEventListener("click", () => {
+document.getElementById("limpar").onclick = () => {
     signaturePad.clear();
-});
+};
 
-document.getElementById("salvar").addEventListener("click", async () => {
+document.getElementById("salvar").onclick = async () => {
 
     if (signaturePad.isEmpty()) {
         alert("Faça uma assinatura primeiro.");
         return;
     }
 
-    const cardId = await getCardId();
-
-    const assinatura = signaturePad.toDataURL("image/png");
-
     try {
 
-        await uploadSignature(cardId, assinatura);
+        const cardId = await getCardId();
 
-        alert("Assinatura anexada ao cartão!");
+        const assinatura = signaturePad.toDataURL("image/png");
 
-    } catch (e) {
+        const resultado = await uploadSignature(cardId, assinatura);
 
-        console.error(e);
-        alert(e.message);
+        console.log(resultado);
+
+        alert("Assinatura enviada para o Trello!");
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        alert(erro.message);
 
     }
 
-});
+};
