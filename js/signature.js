@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Assinatura</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        #signature-pad {
+            width: 100%;
+            height: 300px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background: white;
+            display: block;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+        }
+
+        #limpar {
+            background: #d32f2f;
+        }
+
+        #salvar {
+            background: #1976d2;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Assine abaixo</h2>
+
+<canvas id="signature-pad"></canvas>
+
+<div class="buttons">
+    <button id="limpar">Limpar</button>
+    <button id="salvar">Salvar</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
+<script src="../js/config.js"></script>
+
+<script>
+
+const canvas = document.getElementById("signature-pad");
+
+canvas.width = canvas.offsetWidth;
+canvas.height = 300;
+
+const signaturePad = new SignaturePad(canvas);
+
+document.getElementById("limpar").addEventListener("click", () => {
+    signaturePad.clear();
+});
+
+document.getElementById("salvar").addEventListener("click", () => {
+
+    if (signaturePad.isEmpty()) {
+        alert("Faça uma assinatura primeiro.");
+        return;
+    }
+
+    // Aqui vamos anexar a assinatura ao Trello
+    console.log(signaturePad.toDataURL("image/png"));
+
+});
+
+</script>
+
+</body>
+
+</html>
