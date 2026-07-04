@@ -7,7 +7,7 @@ window.TrelloPowerUp.initialize({
           return t.popup({
             title: "LabFlow",
             url: "pages/home.html",
-            height: 250
+            height: 600
           });
         }
       }
