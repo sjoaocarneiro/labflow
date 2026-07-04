@@ -80,33 +80,22 @@
 
     <script>
 
-        const canvas = document.getElementById("signature-pad");
+        const cardId = await getCardId();
 
-        canvas.width = canvas.offsetWidth;
-        canvas.height = 300;
+const assinatura = signaturePad.toDataURL("image/png");
 
-        const signaturePad = new SignaturePad(canvas);
+try {
 
-        document.getElementById("limpar").addEventListener("click", () => {
-            signaturePad.clear();
-        });
+    await uploadSignature(cardId, assinatura);
 
-        document.getElementById("salvar").addEventListener("click", async () => {
+    alert("Assinatura anexada ao cartão!");
 
-            if (signaturePad.isEmpty()) {
-                alert("Faça uma assinatura primeiro.");
-                return;
-            }
+} catch (e) {
 
-            const cardId = await getCardId();
+    console.error(e);
+    alert(e.message);
 
-            const assinatura = signaturePad.toDataURL("image/png");
-
-            console.log("Card:", cardId);
-            console.log("Assinatura:", assinatura);
-
-            // No próximo passo chamaremos:
-            // await uploadSignature(cardId, assinatura);
+}
 
         });
 
