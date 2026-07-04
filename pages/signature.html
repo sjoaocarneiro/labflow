@@ -13,30 +13,29 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, sans-serif;
             background: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+            padding: 15px;
         }
 
         h2 {
             text-align: center;
-            padding: 15px;
+            margin-bottom: 15px;
         }
 
         #signature-pad {
-            flex: 1;
-            background: white;
+            width: 100%;
+            height: 300px;
             border: 2px solid #ccc;
-            margin: 15px;
             border-radius: 10px;
+            background: white;
+            display: block;
         }
 
-        .botoes {
+        .buttons {
             display: flex;
             gap: 10px;
-            margin: 15px;
+            margin-top: 15px;
         }
 
         button {
@@ -45,19 +44,18 @@
             font-size: 18px;
             border: none;
             border-radius: 10px;
-            color: white;
             cursor: pointer;
+            color: white;
         }
 
         #limpar {
-            background: #e53935;
+            background: #d32f2f;
         }
 
         #salvar {
             background: #1976d2;
         }
     </style>
-
 </head>
 
 <body>
@@ -66,7 +64,7 @@
 
     <canvas id="signature-pad"></canvas>
 
-    <div class="botoes">
+    <div class="buttons">
         <button id="limpar">Limpar</button>
         <button id="salvar">Salvar</button>
     </div>
@@ -74,19 +72,18 @@
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
 
     <script>
-
         const canvas = document.getElementById("signature-pad");
 
-        canvas.width = window.innerWidth - 30;
-        canvas.height = window.innerHeight - 170;
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 300;
 
         const signaturePad = new SignaturePad(canvas);
 
-        document.getElementById("limpar").onclick = () => {
+        document.getElementById("limpar").addEventListener("click", () => {
             signaturePad.clear();
-        };
+        });
 
-        document.getElementById("salvar").onclick = () => {
+        document.getElementById("salvar").addEventListener("click", () => {
 
             if (signaturePad.isEmpty()) {
                 alert("Faça uma assinatura primeiro.");
@@ -98,8 +95,8 @@
             link.download = "assinatura.png";
             link.click();
 
-        };
-
+            alert("Assinatura salva!");
+        });
     </script>
 
 </body>
