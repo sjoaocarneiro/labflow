@@ -5,8 +5,8 @@ window.TrelloPowerUp.initialize({
         text: "LabFlow",
         callback: function (t) {
           return t.modal({
-            title: "LabFlow",
-            url: "pages/home.html",
+            title: "Assinatura",
+            url: "pages/signature.html",
             fullscreen: true
           });
         }
