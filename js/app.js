@@ -1,7 +1,13 @@
+const t = window.TrelloPowerUp.iframe();
+
 document
     .getElementById("btnAssinar")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
-        window.location.href = "signature.html";
+        t.modal({
+            title: "Assinatura",
+            url: "./signature.html",
+            fullscreen: true
+        });
 
     });
