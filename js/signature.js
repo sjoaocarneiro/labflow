@@ -1,4 +1,3 @@
-alert("signature.js carregado");
 const canvas = document.getElementById("signature-pad");
 
 canvas.width = canvas.offsetWidth;
@@ -19,8 +18,6 @@ document.getElementById("salvar").onclick = async () => {
 
     try {
 
-        alert("1");
-
 let cardId;
 
 try {
@@ -33,15 +30,13 @@ try {
     return;
 }
 
-alert("2");
 
 const assinatura = signaturePad.toDataURL("image/png");
 
-alert("3");
 
 const resultado = await uploadSignature(cardId, assinatura);
 
-alert("4");
+await t.closeModal();
 
     } catch (erro) {
 
