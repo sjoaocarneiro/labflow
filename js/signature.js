@@ -1,3 +1,4 @@
+alert("signature.js carregado");
 const canvas = document.getElementById("signature-pad");
 
 canvas.width = canvas.offsetWidth;
