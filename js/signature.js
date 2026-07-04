@@ -1,5 +1,3 @@
-const t = window.TrelloPowerUp.iframe();
-
 const canvas = document.getElementById("signature-pad");
 
 canvas.width = canvas.offsetWidth;
@@ -24,11 +22,11 @@ let cardId;
 
 try {
     cardId = await getCardId();
-    alert("2");
-    alert(cardId);
+    
+    
 } catch (e) {
     console.error(e);
-    alert(e.message);
+    
     return;
 }
 
