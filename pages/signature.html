@@ -60,7 +60,7 @@
 
 <body>
 
-    <h2>Assine abaixo</h2>
+    <h2>Assine Abaixo =)</h2>
 
     <canvas id="signature-pad"></canvas>
 
@@ -69,33 +69,36 @@
         <button id="salvar">Salvar</button>
     </div>
 
+    <!-- Bibliotecas -->
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+
+    <!-- Arquivos do projeto -->
+    <script src="../js/config.js"></script>
+    <script src="../js/trello.js"></script>
+    <script src="../js/api.js"></script>
 
     <script>
-        const canvas = document.getElementById("signature-pad");
 
-        canvas.width = canvas.offsetWidth;
-        canvas.height = 300;
+        const cardId = await getCardId();
 
-        const signaturePad = new SignaturePad(canvas);
+const assinatura = signaturePad.toDataURL("image/png");
 
-        document.getElementById("limpar").addEventListener("click", () => {
-            signaturePad.clear();
-        });
+try {
 
-        document.getElementById("salvar").addEventListener("click", () => {
+    await uploadSignature(cardId, assinatura);
 
-            if (signaturePad.isEmpty()) {
-                alert("Faça uma assinatura primeiro.");
-                return;
-            }
+    alert("Assinatura anexada ao cartão!");
 
-            const link = document.createElement("a");
-            link.href = signaturePad.toDataURL("image/png");
-            link.download = "assinatura.png";
-            link.click();
+} catch (e) {
+
+    console.error(e);
+    alert(e.message);
+
+}
 
         });
+
     </script>
 
 </body>
