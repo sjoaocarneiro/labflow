@@ -60,7 +60,7 @@
 
 <body>
 
-    <h2>Assine abaixo</h2>
+    <h2>Assine Abaixo =)</h2>
 
     <canvas id="signature-pad"></canvas>
 
