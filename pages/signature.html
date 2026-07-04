@@ -60,46 +60,22 @@
 
 <body>
 
-    <h2>Assine Abaixo =)</h2>
+<h2>TESTE LABFLOW</h2>
 
-    <canvas id="signature-pad"></canvas>
+<canvas id="signature-pad"></canvas>
 
-    <div class="buttons">
-        <button id="limpar">Limpar</button>
-        <button id="salvar">Salvar</button>
-    </div>
+<div class="buttons">
+    <button id="limpar">Limpar</button>
+    <button id="salvar">Salvar</button>
+</div>
 
-    <!-- Bibliotecas -->
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
-    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
+<script src="https://p.trellocdn.com/power-up.min.js"></script>
 
-    <!-- Arquivos do projeto -->
-    <script src="../js/config.js"></script>
-    <script src="../js/trello.js"></script>
-    <script src="../js/api.js"></script>
-
-    <script>
-
-        const cardId = await getCardId();
-
-const assinatura = signaturePad.toDataURL("image/png");
-
-try {
-
-    await uploadSignature(cardId, assinatura);
-
-    alert("Assinatura anexada ao cartão!");
-
-} catch (e) {
-
-    console.error(e);
-    alert(e.message);
-
-}
-
-        });
-
-    </script>
+<script src="../js/config.js"></script>
+<script src="../js/trello.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/signature.js"></script>
 
 </body>
 
